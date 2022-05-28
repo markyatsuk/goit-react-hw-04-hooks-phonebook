@@ -50,15 +50,15 @@ function Phonebook() {
     setFilter(e.currentTarget.value);
   }
 
-  function filterContacts() {
-    const normalizedFilter = filter.toLowerCase();
-    console.log(contacts);
-    console.dir(normalizedFilter);
+  // function filterContacts() {
+  //   const normalizedFilter = filter.toLowerCase();
+  //   console.log(contacts);
+  //   console.dir(normalizedFilter);
 
-    contacts.filter((contact) =>
-      contact.name.toLowerCase().includes(normalizedFilter)
-    );
-  }
+  //   contacts.filter((contact) =>
+  //     contact.name.toLowerCase().includes(normalizedFilter)
+  //   );
+  // }
 
   function deleteContact(contactId) {
     setContacts((prevState) => {
