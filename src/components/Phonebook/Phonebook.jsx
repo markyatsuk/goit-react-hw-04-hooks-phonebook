@@ -28,13 +28,11 @@ function Phonebook() {
 
   function addContact(name, number) {
     let isNameAlreadyExists = contacts.find((element) => element.name === name);
-
+    if (isNameAlreadyExists) {
+      alert(`${name} is already in contacts`);
+      return;
+    }
     setContacts((prevState) => {
-      if (isNameAlreadyExists) {
-        alert(`${name} is already in contacts`);
-        return;
-      }
-
       return [
         ...prevState,
         {
@@ -50,15 +48,15 @@ function Phonebook() {
     setFilter(e.currentTarget.value);
   }
 
-  // function filterContacts() {
-  //   const normalizedFilter = filter.toLowerCase();
-  //   console.log(contacts);
-  //   console.dir(normalizedFilter);
+  function filterContacts() {
+    const normalizedFilter = filter.toLowerCase();
+    console.log(contacts);
+    console.dir(normalizedFilter);
 
-  //   contacts.filter((contact) =>
-  //     contact.name.toLowerCase().includes(normalizedFilter)
-  //   );
-  // }
+    return contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+  }
 
   function deleteContact(contactId) {
     setContacts((prevState) => {
@@ -74,7 +72,7 @@ function Phonebook() {
 
       <Section title="Contacts">
         <Filter filterValue={filter} onChangeFilter={changeFilter} />
-        <Contacts contacts={contacts} onDeleteContact={deleteContact} />
+        <Contacts contacts={filterContacts()} onDeleteContact={deleteContact} />
       </Section>
     </div>
   );
